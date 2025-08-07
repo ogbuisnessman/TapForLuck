@@ -14,6 +14,7 @@ let clovers = localStorage.getItem("clovers")
 const clickButton = document.getElementById("click-button");
 const cloverCountDisplay = document.getElementById("clover-count");
 const progressBar = document.getElementById("progress-bar");
+const cloverMessage = document.getElementById("clover-message");
 
 const tapsNeeded = 5;
 
@@ -45,6 +46,22 @@ function getRandomClover() {
   return "common";
 }
 
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function showCloverMessage(text) {
+  cloverMessage.textContent = text;
+  cloverMessage.style.opacity = "1";
+  cloverMessage.style.transition = "opacity 0.5s ease";
+
+  // Fade out after 3 seconds
+  setTimeout(() => {
+    cloverMessage.style.transition = "opacity 1s ease";
+    cloverMessage.style.opacity = "0";
+  }, 3000);
+}
+
 clickButton.addEventListener("click", () => {
   clicks++;
   updateProgressBar();
@@ -66,8 +83,7 @@ clickButton.addEventListener("click", () => {
     updateProgressBar();
     updateButtonText();
 
-    // Optional: show alert or some feedback with emoji and clover type
-    alert(`You got a ${cloverTypes.find(c => c.type === newCloverType).emoji} ${capitalize(newCloverType)} Clover!`);
+    showCloverMessage(`You got a ${cloverTypes.find(c => c.type === newCloverType).emoji} ${capitalize(newCloverType)} Clover!`);
   }
 });
 
@@ -82,10 +98,6 @@ function updateButtonText() {
   } else {
     clickButton.textContent = `${clicks}/${tapsNeeded}`;
   }
-}
-
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // Initialize on load
