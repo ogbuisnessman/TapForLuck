@@ -2,19 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tap For Luck</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>🍀 Tap For Luck 🍀</h1>
-    <button id="click-button">Tap!</button>
-    <p id="clover-message"></p>
-    <div id="progress-container">
+  <h1>🍀 Tap For Luck</h1>
+
+  <div id="clover-counter">Clovers Collected: 0</div>
+
+  <div class="tap-area">
+    <button id="tap-button">Tap 🍀</button>
+    <div id="progress-bar-container">
       <div id="progress-bar"></div>
     </div>
-    <p>Clovers Collected: <span id="clover-count">0</span></p>
-    <button onclick="window.location.href='inventory.html'">Go to Inventory</button>
+  </div>
+
+  <div class="nav-buttons">
+    <button onclick="location.href='inventory.html'">Inventory</button>
+    <button onclick="location.href='probabilities.html'">Clover Probabilities</button>
   </div>
 
   <script src="script.js"></script>
