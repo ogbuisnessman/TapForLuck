@@ -6,7 +6,7 @@ const result = document.getElementById('result');
 const totalDisplay = document.getElementById('clover-total');
 
 const inventory = JSON.parse(localStorage.getItem('inventory')) || {
-  "🍀": 0, "🍃": 0, "🌟": 0, "✨": 0, "💎": 0, "☀️": 0, "👑": 0
+  "🍀 Common Clover": 0, "🍃  Uncommon Clover": 0, "🌟 Rare Clover": 0, "✨ Epic Clover": 0, "💎 Legendary Clover": 0, "☀️ Divine Clover": 0, "👑🔮 Stellar Clover": 0
 };
 
 function tap() {
