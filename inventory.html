@@ -2,59 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Your Inventory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inventory</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>🍀 Your Clover Inventory 🍀</h1>
-    <ul id="clover-list"></ul>
-    <button onclick="window.location.href='index.html'">Back to Tap</button>
-  </div>
+  <h1>🌿 Inventory</h1>
+  <ul id="inventory-list"></ul>
+  <button onclick="location.href='index.html'">Back to Game</button>
 
   <script>
-    const cloverTypes = [
-      { type: "common", emoji: "🍀", name: "Common Clover" },
-      { type: "uncommon", emoji: "🍃", name: "Uncommon Clover" },
-      { type: "rare", emoji: "🌟", name: "Rare Clover" },
-      { type: "epic", emoji: "✨", name: "Epic Clover" },
-      { type: "legendary", emoji: "💎", name: "Legendary Clover" },
-      { type: "divine", emoji: "☀️", name: "Divine Clover" },
-    ];
+    const inventoryList = document.getElementById("inventory-list");
+    const clovers = JSON.parse(localStorage.getItem("clovers")) || {};
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const clovers = JSON.parse(localStorage.getItem("clovers")) || {
-        common: 0,
-        uncommon: 0,
-        rare: 0,
-        epic: 0,
-        legendary: 0,
-        divine: 0,
-      };
-
-      const list = document.getElementById("clover-list");
-      list.innerHTML = "";
-
-      let total = 0;
-
-      cloverTypes.forEach(({ type, emoji, name }) => {
-        const count = clovers[type] || 0;
-        total += count;
+    if (Object.keys(clovers).length === 0) {
+      inventoryList.innerHTML = "<li>No clovers collected yet!</li>";
+    } else {
+      for (let type in clovers) {
         const li = document.createElement("li");
-        li.textContent = `${emoji} ${name} — ${count}`;
-
-        if (type === "legendary") li.classList.add("legendary-glow");
-        if (type === "divine") li.classList.add("divine-glow");
-
-        list.appendChild(li);
-      });
-
-      const totalLi = document.createElement("li");
-      totalLi.style.fontWeight = "bold";
-      totalLi.style.marginTop = "20px";
-      totalLi.textContent = `Total Clovers: ${total}`;
-      list.appendChild(totalLi);
-    });
+        li.textContent = `${type}: ${clovers[type]}`;
+        inventoryList.appendChild(li);
+      }
+    }
   </script>
 </body>
 </html>
