@@ -25,12 +25,14 @@ function tap() {
     countText.textContent = `0/5`;
     bar.style.width = "0%";
     const clover = getClover();
-    inventory[clover] = (inventory[clover] || 0) + 1;
+
+    // Use parseInt to prevent string concat bugs:
+    inventory[clover] = (parseInt(inventory[clover]) || 0) + 1;
+
     totalClovers++;
     localStorage.setItem('inventory', JSON.stringify(inventory));
     localStorage.setItem('totalClovers', totalClovers);
     
-    // Show clover with animation
     showCloverResult(clover);
     
     totalDisplay.textContent = totalClovers;
@@ -41,7 +43,6 @@ function showCloverResult(clover) {
   result.textContent = "";
   result.classList.remove("legendary", "divine", "stellar");
   
-  // Add animation classes for Legendary, Divine, Stellar
   if (clover === "💎") {
     result.classList.add("legendary");
   } else if (clover === "☀️") {
@@ -50,10 +51,10 @@ function showCloverResult(clover) {
     result.classList.add("stellar");
   }
 
-  // Animate by forcing reflow then set text and fade in
-  void result.offsetWidth;
+  void result.offsetWidth; // Trigger reflow for animation
   result.textContent = `${clover} ${cloverName(clover)}`;
   result.classList.add("fade-in");
+
   setTimeout(() => {
     result.classList.remove("fade-in");
   }, 1500);
