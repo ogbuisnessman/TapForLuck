@@ -1,53 +1,43 @@
-const clovers = [
-  { name: "Common Clover", chance: 0.6 },
-  { name: "Uncommon Clover", chance: 0.25 },
-  { name: "Rare Clover", chance: 0.1 },
-  { name: "Epic Clover", chance: 0.04 },
-  { name: "Legendary Clover", chance: 0.009 },
-  { name: "Divine Clover", chance: 0.001 }
-];
+let clickCount = 0;
+let totalClovers = parseInt(localStorage.getItem('totalClovers')) || 0;
+const bar = document.getElementById('bar');
+const countText = document.getElementById('tap-count');
+const result = document.getElementById('result');
+const totalDisplay = document.getElementById('clover-total');
 
-let inventory = JSON.parse(localStorage.getItem("inventory")) || {};
-let clicks = 0;
+const inventory = JSON.parse(localStorage.getItem('inventory')) || {
+  "🍀": 0, "🍃": 0, "🌟": 0, "✨": 0, "💎": 0, "☀️": 0, "👑": 0
+};
 
-document.getElementById("tapBtn").addEventListener("click", () => {
-  clicks++;
-  updateProgress();
+function tap() {
+  clickCount++;
+  countText.textContent = `${clickCount}/5`;
+  bar.style.width = (clickCount / 5) * 100 + "%";
 
-  if (clicks >= 5) {
-    clicks = 0;
-    updateProgress();
-    let clover = getRandomClover();
-    addToInventory(clover);
-    showMessage(clover);
+  if (clickCount === 5) {
+    clickCount = 0;
+    countText.textContent = `0/5`;
+    bar.style.width = "0%";
+    const clover = getClover();
+    inventory[clover] = (inventory[clover] || 0) + 1;
+    totalClovers++;
+    localStorage.setItem('inventory', JSON.stringify(inventory));
+    localStorage.setItem('totalClovers', totalClovers);
+    result.textContent = clover;
+    totalDisplay.textContent = totalClovers;
   }
-});
-
-function updateProgress() {
-  document.getElementById("progress").style.width = `${(clicks / 5) * 100}%`;
 }
 
-function getRandomClover() {
-  let rand = Math.random();
-  let cumulative = 0;
-  for (let c of clovers) {
-    cumulative += c.chance;
-    if (rand < cumulative) return c.name;
-  }
-  return clovers[0].name; // fallback
+function getClover() {
+  const rand = Math.random() * 100;
+  if (rand < 0.007) return "👑";      // Secret Clover 0.007%
+  if (rand < 0.207) return "☀️";      // Divine 0.2%
+  if (rand < 1.007) return "💎";      // Legendary 0.8%
+  if (rand < 5.007) return "✨";      // Epic 4%
+  if (rand < 15.007) return "🌟";     // Rare 10%
+  if (rand < 40.007) return "🍃";     // Uncommon 25%
+  return "🍀";                        // Common 60%
 }
 
-function addToInventory(cloverName) {
-  inventory[cloverName] = (inventory[cloverName] || 0) + 1;
-  localStorage.setItem("inventory", JSON.stringify(inventory));
-}
-
-function showMessage(clover) {
-  const msg = document.getElementById("message");
-  msg.className = "";
-
-  if (clover === "Legendary Clover") msg.classList.add("legendary");
-  if (clover === "Divine Clover") msg.classList.add("divine");
-
-  msg.textContent = `You found a ${clover}!`;
-}
+document.getElementById("tap-button").addEventListener("click", tap);
+totalDisplay.textContent = totalClovers;
