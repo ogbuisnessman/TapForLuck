@@ -5,23 +5,37 @@ const clickButton = document.getElementById("click-button");
 const cloverCountDisplay = document.getElementById("clover-count");
 const progressBar = document.getElementById("progress-bar");
 
+const tapsNeeded = 5;
+
 clickButton.addEventListener("click", () => {
   clicks++;
   updateProgressBar();
+  updateButtonText();
 
-  if (clicks >= 10) {
+  if (clicks >= tapsNeeded) {
     clicks = 0;
     clovers++;
     localStorage.setItem("clovers", clovers);
     cloverCountDisplay.textContent = clovers;
     updateProgressBar();
+    updateButtonText();
   }
 });
 
 function updateProgressBar() {
-  const percent = (clicks / 10) * 100;
+  const percent = (clicks / tapsNeeded) * 100;
   progressBar.style.width = percent + "%";
 }
 
-// Initialize clover count on page load
+function updateButtonText() {
+  if (clicks === 0) {
+    clickButton.textContent = "Tap!";
+  } else {
+    clickButton.textContent = `${clicks}/${tapsNeeded}`;
+  }
+}
+
+// Initialize on load
 cloverCountDisplay.textContent = clovers;
+updateButtonText();
+updateProgressBar();
