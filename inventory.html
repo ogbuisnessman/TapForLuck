@@ -16,13 +16,13 @@
     const stored = JSON.parse(localStorage.getItem('inventory')) || {};
     const list = document.getElementById('inventory-list');
     const names = {
-      "🍀": "🍀 Common Clover",
-      "🍃": "🍃 Uncommon Clover",
-      "🌟": "🌟 Rare Clover",
-      "✨": "✨ Epic Clover",
-      "💎": "💎 Legendary Clover",
-      "☀️": "☀️ Divine Clover",
-      "👑": "👑 Secret Clover"
+      "🍀 Common Clover": "🍀 Common Clover",
+      "🍃 Uncommon Clover": "🍃 Uncommon Clover",
+      "🌟 Rare Clover": "🌟 Rare Clover",
+      "✨ Epic Clover": "✨ Epic Clover",
+      "💎 Legendary Clover": "💎 Legendary Clover",
+      "☀️ Divine Clover": "☀️ Divine Clover",
+      ""👑🔮 Stellar Clover": "👑🔮 Stellar Clover"
     };
     list.innerHTML = Object.entries(names).map(([emoji, name]) => {
       const count = stored[emoji] || 0;
