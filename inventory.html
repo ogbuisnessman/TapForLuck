@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Inventory</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Your Inventory</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🌿 Inventory</h1>
-  <ul id="inventory-list"></ul>
-  <button onclick="location.href='index.html'">Back to Game</button>
+  <h1>🌟 Your Clover Inventory 🌟</h1>
+  <ul id="inventoryList"></ul>
+  <a href="index.html">Back to Tapping</a>
 
   <script>
-    const inventoryList = document.getElementById("inventory-list");
-    const clovers = JSON.parse(localStorage.getItem("clovers")) || {};
-
-    if (Object.keys(clovers).length === 0) {
-      inventoryList.innerHTML = "<li>No clovers collected yet!</li>";
-    } else {
-      for (let type in clovers) {
-        const li = document.createElement("li");
-        li.textContent = `${type}: ${clovers[type]}`;
-        inventoryList.appendChild(li);
-      }
+    const inventory = JSON.parse(localStorage.getItem("inventory")) || {};
+    const list = document.getElementById("inventoryList");
+    for (let clover in inventory) {
+      const li = document.createElement("li");
+      li.textContent = `${clover}: ${inventory[clover]}`;
+      list.appendChild(li);
     }
   </script>
 </body>
