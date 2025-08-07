@@ -1,1 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Inventory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🍀 Your Clover Inventory 🍀</h1>
+    <p>You have <span id="clover-count">0</span> clovers.</p>
+    <button onclick="window.location.href='index.html'">Back to Tap</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const clovers = localStorage.getItem("clovers") || 0;
+      document.getElementById("clover-count").textContent = clovers;
+    });
+  </script>
+</body>
+</html>
 
