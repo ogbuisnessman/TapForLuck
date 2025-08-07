@@ -1,23 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Your Inventory</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>🍀 Your Clover Inventory 🍀</h1>
-    <p>You have <span id="clover-count">0</span> clovers.</p>
+    <ul id="clover-list" style="text-align: left; font-size: 1.2rem;"></ul>
     <button onclick="window.location.href='index.html'">Back to Tap</button>
   </div>
 
   <script>
+    const cloverTypes = [
+      { type: "common", emoji: "🍀", name: "Common Clover" },
+      { type: "uncommon", emoji: "🍃", name: "Uncommon Clover" },
+      { type: "rare", emoji: "🌟", name: "Rare Clover" },
+      { type: "epic", emoji: "✨", name: "Epic Clover" },
+      { type: "legendary", emoji: "💎", name: "Legendary Clover" },
+    ];
+
     document.addEventListener("DOMContentLoaded", () => {
-      const clovers = localStorage.getItem("clovers") || 0;
-      document.getElementById("clover-count").textContent = clovers;
+      const clovers = JSON.parse(localStorage.getItem("clovers")) || {
+        common: 0,
+        uncommon: 0,
+        rare: 0,
+        epic: 0,
+        legendary: 0,
+      };
+
+      const list = document.getElementById("clover-list");
+      list.innerHTML = "";
+
+      let total = 0;
+
+      cloverTypes.forEach(({ type, emoji, name }) => {
+        const count = clovers[type] || 0;
+        total += count;
+        const li = document.createElement("li");
+        li.textContent = `${emoji} ${name} — ${count}`;
+        list.appendChild(li);
+      });
+
+      // Also display total clovers at the bottom
+      const totalLi = document.createElement("li");
+      totalLi.style.fontWeight = "bold";
+      totalLi.style.marginTop = "10px";
+      totalLi.textContent = `Total Clovers: ${total}`;
+      list.appendChild(totalLi);
     });
   </script>
 </body>
 </html>
-
