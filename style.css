@@ -1,56 +1,59 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #e0ffe0;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-}
-
-button {
-  font-size: 1.1em;
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 8px;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-}
-
-#bar-container {
-  width: 100%;
-  height: 25px;
-  background-color: #ccc;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 20px 0;
-}
-
-#bar {
-  height: 100%;
-  width: 0%;
-  background-color: green;
-  transition: width 0.3s ease;
-}
+/* Existing styles above ... */
 
 .clover-result {
   font-size: 2em;
   margin: 20px 0;
-  animation: fadeIn 0.6s ease-in-out;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  font-weight: bold;
 }
 
-.clover-list p {
-  font-size: 1.2em;
-  margin: 10px 0;
+/* Fade in animation */
+.fade-in {
+  animation: fadeInScale 1.2s ease forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Legendary Clover - glowing gold */
+.legendary {
+  color: #ffd700;
+  text-shadow:
+    0 0 8px #ffd700,
+    0 0 20px #ffcc00,
+    0 0 30px #ff9900,
+    0 0 40px #ff6600;
+}
+
+/* Divine Clover - radiant sunbeam glow */
+.divine {
+  color: #ffda44;
+  text-shadow:
+    0 0 10px #ffea70,
+    0 0 20px #fff380,
+    0 0 30px #fff9b0,
+    0 0 40px #fffec0;
+}
+
+/* Stellar Clover - cosmic purple glow */
+.stellar {
+  color: #9b59b6;
+  text-shadow:
+    0 0 10px #8e44ad,
+    0 0 20px #a569bd,
+    0 0 30px #bb8fce,
+    0 0 40px #d2b4de;
 }
