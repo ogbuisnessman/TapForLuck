@@ -1,48 +1,97 @@
+/* Background and font */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #ccffcc; /* lighter green */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #d9f7d9 0%, #b1e5b1 100%);
   text-align: center;
   padding-top: 50px;
-  transition: background-color 0.5s ease;
-}
-
-.container {
-  width: 320px;
-  margin: 0 auto;
-}
-
-button {
-  font-size: 1.8rem; /* bigger button text */
-  padding: 15px 40px; /* bigger clickable area */
-  margin: 15px 10px;
-  cursor: pointer;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.6s ease;
+  color: #2f4f2f; /* deep green text */
   user-select: none;
 }
 
-button:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
+/* Container */
+.container {
+  width: 340px;
+  margin: 0 auto;
+  background: #f9fff9;
+  padding: 30px 25px;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(34, 139, 34, 0.3);
+  transition: box-shadow 0.3s ease;
 }
 
+.container:hover {
+  box-shadow: 0 10px 30px rgba(34, 139, 34, 0.45);
+}
+
+/* Buttons */
+button {
+  font-size: 1.9rem;
+  padding: 18px 50px;
+  margin: 15px 10px;
+  cursor: pointer;
+  background: linear-gradient(145deg, #66bb6a, #43a047);
+  color: #f0f9f0;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(56, 142, 60, 0.5);
+  transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.4s ease;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+button:hover {
+  background: linear-gradient(145deg, #81c784, #4caf50);
+  transform: scale(1.07);
+  box-shadow: 0 9px 16px rgba(56, 142, 60, 0.7);
+}
+
+/* Progress bar container */
 #progress-container {
   width: 100%;
-  height: 30px;
-  background-color: #ddd;
-  border-radius: 15px;
+  height: 32px;
+  background: #d4edda;
+  border-radius: 20px;
   overflow: hidden;
-  margin: 20px 0;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+  margin: 25px 0;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Progress bar fill */
 #progress-bar {
   height: 100%;
   width: 0%;
-  background-color: #4caf50;
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  border-radius: 20px 0 0 20px;
   transition: width 0.4s ease;
-  border-radius: 15px 0 0 15px;
+  box-shadow: 0 0 10px 2px rgba(76, 175, 80, 0.7);
+}
+
+/* List styles for inventory and probabilities */
+ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+li {
+  padding: 6px 0;
+  font-size: 1.25rem;
+  color: #2e7d32;
+  font-weight: 500;
+  border-bottom: 1px solid #c8e6c9;
+}
+
+li:last-child {
+  border-bottom: none;
+  font-weight: 700;
+  color: #1b5e20;
+  margin-top: 15px;
+}
+
+/* Headers */
+h1 {
+  color: #2e7d32;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  margin-bottom: 15px;
 }
