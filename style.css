@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -141,6 +142,64 @@ li:last-child {
   font-weight: 700;
   color: #2f5212;
   margin-top: 20px;
+}
+
+/* Glow Animations */
+@keyframes glowBlue {
+  0%, 100% {
+    text-shadow:
+      0 0 5px #7e9aff,
+      0 0 10px #7e9aff,
+      0 0 20px #5a7eff,
+      0 0 30px #5a7eff,
+      0 0 40px #3a5eff;
+    color: #4f69e0;
+  }
+  50% {
+    text-shadow:
+      0 0 12px #a3baff,
+      0 0 25px #a3baff,
+      0 0 35px #7a9fff,
+      0 0 50px #7a9fff,
+      0 0 60px #5a7eff;
+    color: #6380ff;
+  }
+}
+
+@keyframes glowGoldPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 8px #ffea7f,
+      0 0 15px #ffd54f,
+      0 0 25px #ffb300,
+      0 0 35px #ffb300,
+      0 0 45px #ff6f00;
+    color: #ffca28;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow:
+      0 0 20px #fff176,
+      0 0 40px #ffeb3b,
+      0 0 60px #ffc107,
+      0 0 80px #ff9800,
+      0 0 100px #f57c00;
+    color: #fff176;
+    transform: scale(1.05);
+  }
+}
+
+/* Apply glow animation to Legendary clover list items */
+.legendary-glow {
+  animation: glowBlue 3s ease-in-out infinite;
+  font-weight: 700;
+}
+
+/* Apply glow + pulse animation to Divine clover list items */
+.divine-glow {
+  animation: glowGoldPulse 3s ease-in-out infinite;
+  font-weight: 800;
+  font-style: italic;
 }
 
 /* Responsive tweaks */
