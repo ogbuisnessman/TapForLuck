@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <title>Your Inventory</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>🍀 Your Clover Inventory 🍀</h1>
-    <ul id="clover-list" style="text-align: left; font-size: 1.2rem;"></ul>
+    <ul id="clover-list"></ul>
     <button onclick="window.location.href='index.html'">Back to Tap</button>
   </div>
 
@@ -37,26 +36,22 @@
       list.innerHTML = "";
 
       let total = 0;
+
       cloverTypes.forEach(({ type, emoji, name }) => {
         const count = clovers[type] || 0;
         total += count;
         const li = document.createElement("li");
         li.textContent = `${emoji} ${name} — ${count}`;
 
-        // Add special classes for animation on legendary and divine
-        if (type === "legendary") {
-          li.classList.add("legendary-glow");
-        }
-        if (type === "divine") {
-          li.classList.add("divine-glow");
-        }
+        if (type === "legendary") li.classList.add("legendary-glow");
+        if (type === "divine") li.classList.add("divine-glow");
 
         list.appendChild(li);
       });
 
       const totalLi = document.createElement("li");
       totalLi.style.fontWeight = "bold";
-      totalLi.style.marginTop = "15px";
+      totalLi.style.marginTop = "20px";
       totalLi.textContent = `Total Clovers: ${total}`;
       list.appendChild(totalLi);
     });
