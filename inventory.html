@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Your Inventory</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inventory</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 40px; }
+    .clover { font-size: 30px; }
+  </style>
 </head>
 <body>
-  <h1>🌟 Your Clover Inventory 🌟</h1>
-  <ul id="inventoryList"></ul>
-  <a href="index.html">Back to Tapping</a>
+  <h1>📦 Inventory</h1>
+  <div id="inventory" class="clover"></div>
+  <br>
+  <button onclick="window.location.href='index.html'">Back</button>
 
   <script>
-    const inventory = JSON.parse(localStorage.getItem("inventory")) || {};
-    const list = document.getElementById("inventoryList");
-    for (let clover in inventory) {
-      const li = document.createElement("li");
-      li.textContent = `${clover}: ${inventory[clover]}`;
-      list.appendChild(li);
-    }
+    const inventory = JSON.parse(localStorage.getItem('inventory')) || {
+      "🍀": 0,
+      "🌟": 0,
+      "💎": 0,
+      "🔱": 0
+    };
+
+    const div = document.getElementById("inventory");
+    div.innerHTML = `
+      🍀 Common: ${inventory["🍀"]}<br>
+      🌟 Rare: ${inventory["🌟"]}<br>
+      💎 <span class="legendary">Legendary</span>: ${inventory["💎"]}<br>
+      🔱 <span class="divine">Divine</span>: ${inventory["🔱"]}
+    `;
   </script>
 </body>
 </html>
