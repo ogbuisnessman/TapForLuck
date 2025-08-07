@@ -6,7 +6,13 @@ const result = document.getElementById('result');
 const totalDisplay = document.getElementById('clover-total');
 
 const inventory = JSON.parse(localStorage.getItem('inventory')) || {
-  "🍀 Common Clover": 0, "🍃  Uncommon Clover": 0, "🌟 Rare Clover": 0, "✨ Epic Clover": 0, "💎 Legendary Clover": 0, "☀️ Divine Clover": 0, "👑🔮 Stellar Clover": 0
+  "🍀": 0,
+  "🍃": 0,
+  "🌟": 0,
+  "✨": 0,
+  "💎": 0,
+  "☀️": 0,
+  "👑🔮": 0
 };
 
 function tap() {
@@ -23,20 +29,58 @@ function tap() {
     totalClovers++;
     localStorage.setItem('inventory', JSON.stringify(inventory));
     localStorage.setItem('totalClovers', totalClovers);
-    result.textContent = clover;
+    
+    // Show clover with animation
+    showCloverResult(clover);
+    
     totalDisplay.textContent = totalClovers;
   }
 }
 
+function showCloverResult(clover) {
+  result.textContent = "";
+  result.classList.remove("legendary", "divine", "stellar");
+  
+  // Add animation classes for Legendary, Divine, Stellar
+  if (clover === "💎") {
+    result.classList.add("legendary");
+  } else if (clover === "☀️") {
+    result.classList.add("divine");
+  } else if (clover === "👑🔮") {
+    result.classList.add("stellar");
+  }
+
+  // Animate by forcing reflow then set text and fade in
+  void result.offsetWidth;
+  result.textContent = `${clover} ${cloverName(clover)}`;
+  result.classList.add("fade-in");
+  setTimeout(() => {
+    result.classList.remove("fade-in");
+  }, 1500);
+}
+
+function cloverName(emoji) {
+  const map = {
+    "🍀": "Common Clover",
+    "🍃": "Uncommon Clover",
+    "🌟": "Rare Clover",
+    "✨": "Epic Clover",
+    "💎": "Legendary Clover",
+    "☀️": "Divine Clover",
+    "👑🔮": "Stellar Clover"
+  };
+  return map[emoji] || "";
+}
+
 function getClover() {
   const rand = Math.random() * 100;
-  if (rand < 0.007) return "👑🔮 Stellar Clover";      // Secret Clover 0.007%
-  if (rand < 0.207) return "☀️ Divine Clover";      // Divine 0.2%
-  if (rand < 1.007) return "💎 Legendary Clover ";      // Legendary 0.8%
-  if (rand < 5.007) return "✨ Epic Clover ";      // Epic 4%
-  if (rand < 15.007) return "🌟 Rare Clover";     // Rare 10%
-  if (rand < 40.007) return "🍃  Uncommon Clover";     // Uncommon 25%
-  return "🍀 Common Clover";                        // Common 60%
+  if (rand < 0.007) return "👑🔮";       // Secret Stellar Clover 0.007%
+  if (rand < 0.207) return "☀️";         // Divine 0.2%
+  if (rand < 1.007) return "💎";         // Legendary 0.8%
+  if (rand < 5.007) return "✨";          // Epic 4%
+  if (rand < 15.007) return "🌟";         // Rare 10%
+  if (rand < 40.007) return "🍃";         // Uncommon 25%
+  return "🍀";                          // Common 60%
 }
 
 document.getElementById("tap-button").addEventListener("click", tap);
