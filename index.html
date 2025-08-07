@@ -2,90 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tap For Luck</title>
-  <style>
-    body { font-family: Arial; text-align: center; margin-top: 40px; }
-    #bar-container {
-      width: 200px;
-      height: 25px;
-      border: 2px solid #333;
-      margin: 20px auto;
-      background-color: #eee;
-    }
-    #bar {
-      height: 100%;
-      background-color: green;
-      width: 0%;
-      transition: width 0.3s;
-    }
-    .clover {
-      font-size: 40px;
-    }
-    .legendary, .divine {
-      animation: pulse 1s ease infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-      100% { transform: scale(1); }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <h1>🍀 Tap For Luck</h1>
-  <button onclick="tap()">Tap</button>
-  <div id="bar-container">
-    <div id="bar"></div>
+  <div class="container">
+    <h1>🍀 Tap For Luck</h1>
+    <button id="tap-button">Tap</button>
+    <p id="tap-count">0/5</p>
+    <div id="bar-container">
+      <div id="bar"></div>
+    </div>
+    <p>Clovers Collected: <span id="clover-total">0</span></p>
+    <div id="result" class="clover-result"></div>
+    <div class="nav-buttons">
+      <button onclick="location.href='inventory.html'">Inventory</button>
+      <button onclick="location.href='probabilities.html'">Clover Probabilities</button>
+    </div>
   </div>
-  <p>Clicks: <span id="clicks">0</span>/5</p>
-  <div id="result" class="clover"></div>
-  <br>
-  <button onclick="window.location.href='inventory.html'">Inventory</button>
-  <button onclick="window.location.href='rarity.html'">Clover Probabilities</button>
-
-  <script>
-    let clickCount = 0;
-    const inventory = JSON.parse(localStorage.getItem('inventory')) || {
-      "🍀": 0,
-      "🌟": 0,
-      "💎": 0,
-      "🔱": 0
-    };
-
-    function tap() {
-      clickCount++;
-      document.getElementById('clicks').textContent = clickCount;
-      updateBar(clickCount);
-
-      if (clickCount === 5) {
-        clickCount = 0;
-        document.getElementById('clicks').textContent = 0;
-        updateBar(0);
-        const clover = getClover();
-        inventory[clover]++;
-        localStorage.setItem('inventory', JSON.stringify(inventory));
-        const resultDiv = document.getElementById('result');
-        resultDiv.textContent = clover;
-        resultDiv.className = 'clover';
-        if (clover === "💎") resultDiv.classList.add('legendary');
-        if (clover === "🔱") resultDiv.classList.add('divine');
-      }
-    }
-
-    function updateBar(clicks) {
-      const percent = (clicks / 5) * 100;
-      document.getElementById('bar').style.width = percent + "%";
-    }
-
-    function getClover() {
-      const rand = Math.random() * 100;
-      if (rand < 70) return "🍀";
-      if (rand < 90) return "🌟";
-      if (rand < 99) return "💎";
-      return "🔱";
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
