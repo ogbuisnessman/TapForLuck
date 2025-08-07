@@ -30,13 +30,13 @@ function tap() {
 
 function getClover() {
   const rand = Math.random() * 100;
-  if (rand < 0.007) return "👑";      // Secret Clover 0.007%
-  if (rand < 0.207) return "☀️";      // Divine 0.2%
-  if (rand < 1.007) return "💎";      // Legendary 0.8%
-  if (rand < 5.007) return "✨";      // Epic 4%
-  if (rand < 15.007) return "🌟";     // Rare 10%
-  if (rand < 40.007) return "🍃";     // Uncommon 25%
-  return "🍀";                        // Common 60%
+  if (rand < 0.007) return "👑🔮 Stellar Clover";      // Secret Clover 0.007%
+  if (rand < 0.207) return "☀️ Divine Clover";      // Divine 0.2%
+  if (rand < 1.007) return "💎 Legendary Clover ";      // Legendary 0.8%
+  if (rand < 5.007) return "✨ Epic Clover ";      // Epic 4%
+  if (rand < 15.007) return "🌟 Rare Clover";     // Rare 10%
+  if (rand < 40.007) return "🍃  Uncommon Clover";     // Uncommon 25%
+  return "🍀 Common Clover";                        // Common 60%
 }
 
 document.getElementById("tap-button").addEventListener("click", tap);
