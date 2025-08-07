@@ -1,36 +1,27 @@
-const cloverTypes = [
-  { name: "Common Clover", emoji: "🍀" },
-  { name: "Lucky Clover", emoji: "🌟🍀" },
-  { name: "Golden Clover", emoji: "✨🍀" },
-  { name: "Radiant Clover", emoji: "🌈🍀" },
-  { name: "Mystic Clover", emoji: "🔮🍀" }
-];
+let clicks = 0;
+let clovers = localStorage.getItem("clovers") ? parseInt(localStorage.getItem("clovers")) : 0;
 
-let inventory = [];
+const clickButton = document.getElementById("click-button");
+const cloverCountDisplay = document.getElementById("clover-count");
+const progressBar = document.getElementById("progress-bar");
 
-function generateClover() {
-  const randomIndex = Math.floor(Math.random() * cloverTypes.length);
-  const clover = cloverTypes[randomIndex];
+clickButton.addEventListener("click", () => {
+  clicks++;
+  updateProgressBar();
 
-  // Show the result
-  const resultDiv = document.getElementById("result");
-  resultDiv.innerText = `You got a ${clover.name}! ${clover.emoji}`;
+  if (clicks >= 10) {
+    clicks = 0;
+    clovers++;
+    localStorage.setItem("clovers", clovers);
+    cloverCountDisplay.textContent = clovers;
+    updateProgressBar();
+  }
+});
 
-  // Add to inventory
-  inventory.push(clover);
-  updateInventory();
+function updateProgressBar() {
+  const percent = (clicks / 10) * 100;
+  progressBar.style.width = percent + "%";
 }
 
-function updateInventory() {
-  const inventoryList = document.getElementById("inventory");
-  inventoryList.innerHTML = "";
-
-  inventory.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.textContent = `${index + 1}. ${item.name} ${item.emoji}`;
-    inventoryList.appendChild(li);
-  });
-}
-
-document.getElementById("generateBtn").addEventListener("click", generateClover);
-
+// Initialize clover count on page load
+cloverCountDisplay.textContent = clovers;
