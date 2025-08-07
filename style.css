@@ -1,115 +1,60 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #e8ffe8;
   text-align: center;
-  padding-top: 50px;
-  margin: 0;
+  background: #f0f8ff;
+  padding: 30px;
 }
 
-.container {
+#click-bar {
   width: 300px;
-  margin: 0 auto;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #a4d4a4;
-}
-
-button {
-  font-size: 1.3rem;
-  padding: 15px 40px;
-  margin: 15px 0;
-  cursor: pointer;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-#progress-container {
-  width: 100%;
-  height: 25px;
-  background-color: #ccc;
-  border-radius: 15px;
+  height: 30px;
+  background: #ddd;
+  margin: 20px auto;
+  border-radius: 5px;
   overflow: hidden;
-  margin: 20px 0;
 }
 
-#progress-bar {
+#progress {
   height: 100%;
   width: 0%;
-  background-color: #4CAF50;
-  transition: width 0.3s ease;
+  background: green;
+  transition: width 0.3s;
 }
 
-/* Glow animations */
-@keyframes glowBlue {
-  0%, 100% {
-    text-shadow:
-      0 0 5px #7e9aff,
-      0 0 10px #7e9aff,
-      0 0 20px #5a7eff,
-      0 0 30px #5a7eff,
-      0 0 40px #3a5eff;
-    color: #4f69e0;
-  }
-  50% {
-    text-shadow:
-      0 0 12px #a3baff,
-      0 0 25px #a3baff,
-      0 0 35px #7a9fff,
-      0 0 50px #7a9fff,
-      0 0 60px #5a7eff;
-    color: #6380ff;
-  }
+#tapBtn {
+  font-size: 20px;
+  padding: 15px 30px;
+  margin-bottom: 20px;
 }
 
-@keyframes glowGoldPulse {
-  0%, 100% {
-    text-shadow:
-      0 0 8px #ffea7f,
-      0 0 15px #ffd54f,
-      0 0 25px #ffb300,
-      0 0 35px #ffb300,
-      0 0 45px #ff6f00;
-    color: #ffca28;
-    transform: scale(1);
-  }
-  50% {
-    text-shadow:
-      0 0 20px #fff176,
-      0 0 40px #ffeb3b,
-      0 0 60px #ffc107,
-      0 0 80px #ff9800,
-      0 0 100px #f57c00;
-    color: #fff176;
-    transform: scale(1.05);
-  }
+.nav-buttons a {
+  margin: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
-.legendary-glow {
-  animation: glowBlue 3s ease-in-out infinite;
-  font-weight: 700;
+@keyframes flash {
+  0%, 100% { background-color: yellow; }
+  50% { background-color: gold; }
 }
 
-.divine-glow {
-  animation: glowGoldPulse 3s ease-in-out infinite;
-  font-weight: 800;
-  font-style: italic;
+@keyframes sparkle {
+  0%, 100% { color: #ffffff; text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4; }
+  50% { color: #ffd700; text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff; }
 }
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
-  text-align: left;
+.legendary {
+  animation: flash 1s ease-in-out 3;
+  font-weight: bold;
+  color: orange;
 }
 
-li {
-  margin: 10px 0;
-  font-size: 1.2rem;
+.divine {
+  animation: sparkle 1s ease-in-out 3;
+  font-weight: bold;
+  color: purple;
 }
