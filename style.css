@@ -1,103 +1,115 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #e0ffe0;
-  margin: 0;
-  padding: 0;
+/* Divine Clover - CRAZY radiant glow + pulse + flicker */
+.divine {
+  color: #fff176;
+  animation: divineGlowPulse 2.5s ease-in-out infinite, divineFlicker 0.5s linear infinite;
+  text-shadow:
+    0 0 10px #fff176,
+    0 0 20px #fff59d,
+    0 0 30px #ffecb3,
+    0 0 40px #fff9c4,
+    0 0 60px #ffeb3b,
+    0 0 80px #fdd835,
+    0 0 100px #fbc02d;
 }
 
-.container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-}
-
-button {
-  font-size: 1.1em;
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 8px;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-}
-
-#bar-container {
-  width: 100%;
-  height: 25px;
-  background-color: #ccc;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 20px 0;
-}
-
-#bar {
-  height: 100%;
-  width: 0%;
-  background-color: green;
-  transition: width 0.3s ease;
-}
-
-.clover-result {
-  font-size: 2em;
-  margin: 20px 0;
-  opacity: 1;
-  transition: opacity 0.4s ease;
-  font-weight: bold;
-}
-
-/* Fade in animation */
-.fade-in {
-  animation: fadeInScale 1.2s ease forwards;
-}
-
-@keyframes fadeInScale {
-  0% {
-    opacity: 0;
-    transform: scale(0.7);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-  100% {
-    opacity: 1;
+@keyframes divineGlowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 10px #fff176,
+      0 0 20px #fff59d,
+      0 0 30px #ffecb3,
+      0 0 40px #fff9c4,
+      0 0 60px #ffeb3b,
+      0 0 80px #fdd835,
+      0 0 100px #fbc02d;
     transform: scale(1);
   }
+  50% {
+    text-shadow:
+      0 0 20px #fffde7,
+      0 0 40px #fffde7,
+      0 0 60px #fffde7,
+      0 0 80px #fff59d,
+      0 0 100px #fff59d,
+      0 0 120px #fff59d,
+      0 0 140px #fff59d;
+    transform: scale(1.1);
+  }
 }
 
-/* Legendary Clover - glowing gold */
-.legendary {
-  color: #ffd700;
-  text-shadow:
-    0 0 8px #ffd700,
-    0 0 20px #ffcc00,
-    0 0 30px #ff9900,
-    0 0 40px #ff6600;
+@keyframes divineFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
 }
 
-/* Divine Clover - radiant sunbeam glow */
-.divine {
-  color: #ffda44;
-  text-shadow:
-    0 0 10px #ffea70,
-    0 0 20px #fff380,
-    0 0 30px #fff9b0,
-    0 0 40px #fffec0;
-}
-
-/* Stellar Clover - cosmic purple glow */
+/* Stellar Clover - CRAZY cosmic sparkle + rotation + pulse */
 .stellar {
-  color: #9b59b6;
+  color: #af7ac5;
+  animation: stellarPulse 3s ease-in-out infinite, stellarRotate 10s linear infinite;
   text-shadow:
-    0 0 10px #8e44ad,
-    0 0 20px #a569bd,
-    0 0 30px #bb8fce,
-    0 0 40px #d2b4de;
+    0 0 10px #af7ac5,
+    0 0 20px #bb8fce,
+    0 0 30px #d2b4de,
+    0 0 40px #e8daef,
+    0 0 60px #c39bd3,
+    0 0 80px #9b59b6,
+    0 0 100px #8e44ad;
+  display: inline-block; /* needed for transform */
+  position: relative;
 }
 
-.clover-list p {
-  font-size: 1.2em;
-  margin: 10px 0;
+@keyframes stellarPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 10px #af7ac5,
+      0 0 20px #bb8fce,
+      0 0 30px #d2b4de,
+      0 0 40px #e8daef,
+      0 0 60px #c39bd3,
+      0 0 80px #9b59b6,
+      0 0 100px #8e44ad;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow:
+      0 0 20px #f3e5f5,
+      0 0 40px #f3e5f5,
+      0 0 60px #f3e5f5,
+      0 0 80px #bb8fce,
+      0 0 100px #bb8fce,
+      0 0 120px #bb8fce,
+      0 0 140px #bb8fce;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes stellarRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Add some sparkle dots for Stellar */
+.stellar::before, .stellar::after {
+  content: '✨';
+  position: absolute;
+  font-size: 0.8em;
+  color: #d1c4e9;
+  animation: sparkle 3s linear infinite;
+  opacity: 0.7;
+  top: -0.4em;
+  right: -1em;
+  pointer-events: none;
+  user-select: none;
+}
+
+.stellar::after {
+  content: '🌟';
+  left: -1em;
+  top: 1em;
+  animation-delay: 1.5s;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.5) rotate(45deg); }
 }
